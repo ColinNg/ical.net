@@ -6,7 +6,7 @@ namespace Ical.Net.Interfaces.DataTypes
     public interface IRecurrencePattern : IEncodableDataType
     {
         FrequencyType Frequency { get; set; }
-        DateTime Until { get; set; }
+        IDateTime Until { get; set; }
         int Count { get; set; }
         int Interval { get; set; }
         List<int> BySecond { get; set; }

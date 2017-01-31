@@ -22,7 +22,7 @@ namespace Ical.Net.UnitTests
             //Recur daily through the end of the day, July 31, 2016
             var recurrenceRule = new RecurrencePattern(FrequencyType.Daily, 1)
             {
-                Until = DateTime.Parse("2016-07-31T11:59:59")
+                Until = new CalDateTime(DateTime.Parse("2016-07-31T11:59:59"))
             };
 
             vEvent.RecurrenceRules = new List<IRecurrencePattern> {recurrenceRule};
@@ -51,7 +51,7 @@ namespace Ical.Net.UnitTests
             // Recurring every other Tuesday until Dec 31
             var rrule = new RecurrencePattern(FrequencyType.Weekly, 2)
             {
-                Until = DateTime.Parse("2016-12-31T11:59:59")
+                Until = new CalDateTime(DateTime.Parse("2016-12-31T11:59:59"))
             };
             vEvent.RecurrenceRules = new List<IRecurrencePattern> { rrule };
 
@@ -82,7 +82,7 @@ namespace Ical.Net.UnitTests
                 Interval = 1,
                 ByMonth = new List<int> { 11 },
                 ByDay = new List<IWeekDay> { new WeekDay { DayOfWeek = DayOfWeek.Thursday, Offset = 4 } },
-                Until = DateTime.MaxValue
+                Until = new CalDateTime(DateTime.MaxValue)
             };
             vEvent.RecurrenceRules = new List<IRecurrencePattern> { rrule };
 

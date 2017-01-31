@@ -21,7 +21,7 @@ namespace Ical.Net.DataTypes
 
         public FrequencyType Frequency { get; set; }
 
-        public DateTime Until { get; set; } = DateTime.MinValue;
+        public IDateTime Until { get; set; } = new CalDateTime(DateTime.MinValue);
 
         public int Count { get; set; } = int.MinValue;
 

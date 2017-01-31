@@ -2566,7 +2566,7 @@ namespace Ical.Net.UnitTests
                 var serializer = new RecurrencePatternSerializer();
                 var rp = (RecurrencePattern)serializer.Deserialize(sr);
                 var rpe = new RecurrencePatternEvaluator(rp);
-                var recurringPeriods = rpe.Evaluate(new CalDateTime(start), start, rp.Until, false);
+                var recurringPeriods = rpe.Evaluate(new CalDateTime(start), start, rp.Until.Value, false);
                 
                 var period = recurringPeriods.ElementAt(recurringPeriods.Count() - 1);
 
@@ -2590,7 +2590,7 @@ namespace Ical.Net.UnitTests
 
             var pattern = new RecurrencePattern {
                 Frequency = FrequencyType.Monthly,
-                Until = new DateTime(2011, 12, 25, 0, 0, 0, DateTimeKind.Utc),
+                Until = new CalDateTime(new DateTime(2011, 12, 25, 0, 0, 0, DateTimeKind.Utc)),
                 FirstDayOfWeek = DayOfWeek.Sunday,
                 ByMonthDay = new List<int>(new[] { 29 })
             };
@@ -2959,7 +2959,7 @@ END:VCALENDAR";
 
             var rrule = new RecurrencePattern(FrequencyType.Weekly, interval: 1)
             {
-                Until = DateTime.Parse("2016-08-31T07:00:00"),
+                Until = new CalDateTime(DateTime.Parse("2016-08-31T07:00:00")),
                 ByDay = new List<IWeekDay> { new WeekDay(DayOfWeek.Wednesday)},
             };
 

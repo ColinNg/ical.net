@@ -136,7 +136,7 @@ namespace Ical.Net.Serialization.iCalendar.Serializers.DataTypes
                 values.Add("INTERVAL=" + interval);
             }
 
-            if (recur.Until != DateTime.MinValue)
+            if (recur.Until.Value != DateTime.MinValue)
             {
                 var serializer = factory.Build(typeof (IDateTime), SerializationContext) as IStringSerializer;
                 if (serializer != null)
@@ -250,7 +250,7 @@ namespace Ical.Net.Serialization.iCalendar.Serializers.DataTypes
                                 var dt = serializer?.Deserialize(new StringReader(keyValue)) as IDateTime;
                                 if (dt != null)
                                 {
-                                    r.Until = dt.Value;
+                                    r.Until = dt;
                                 }
                             }
                                 break;
@@ -449,7 +449,7 @@ namespace Ical.Net.Serialization.iCalendar.Serializers.DataTypes
                         var dt = DateTime.Parse(match.Groups["DateTime"].Value);
                         DateTime.SpecifyKind(dt, DateTimeKind.Utc);
 
-                        r.Until = dt;
+                        r.Until = new CalDateTime(dt);
                     }
                     else if ((match = SpecificRecurrenceCount.Match(item)).Success)
                     {
