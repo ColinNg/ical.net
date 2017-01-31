@@ -64,8 +64,7 @@ namespace Ical.Net.Utility
                 // The first date/time is in UTC time, convert!
                 return new CalDateTime(copy.AsUtc);
             }
-            // The first date/time is in local time, convert!
-            return new CalDateTime(copy.AsSystemLocal);
+            return copy;
         }
 
         public static DateTime AddWeeks(DateTime dt, int interval, DayOfWeek firstDayOfWeek)
